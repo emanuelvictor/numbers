@@ -1,18 +1,16 @@
 package br.com.produtec.numbers.domain.entity.numbers;
 
 import br.com.produtec.numbers.domain.entity.AbstractEntity;
-import br.com.produtec.numbers.domain.entity.EntityIdResolver;
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import org.hibernate.envers.Audited;
-import org.hibernate.validator.constraints.Length;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.validation.constraints.NotBlank;
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * @author Emanuel Victor
@@ -24,23 +22,45 @@ import javax.validation.constraints.NotBlank;
 @Audited
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id",
-        scope = Number.class,
-        resolver = EntityIdResolver.class)
 public class Number extends AbstractEntity {
 
     /**
      *
      */
-    @NotBlank
-    @Length(max = 3)
-    @Column(nullable = false, unique = true, length = 50)
-    private String digit;
+    @NotNull
+    @Column(nullable = false, unique = true)
+    private Short digit;
 
     /**
      *
      */
     @Column(nullable = false)
-    private long processingTime;
+    private Integer processingTime;
 
+    /**
+     *
+     */
+    @Transient
+    private Set<Short> numbers;
+
+    /**
+     *
+     */
+    @PreUpdate
+    @PrePersist
+    public void calculateNumbers() {
+        final LocalDateTime init = LocalDateTime.now();
+
+        if (digit == 0)
+            return;
+
+        this.numbers = new HashSet<>();
+
+        for (int i = 0; i < digit; i++) {
+            this.numbers.add((short) i);
+        }
+
+        final LocalDateTime finall = LocalDateTime.now();
+        this.processingTime = finall.getNano() - init.getNano();
+    }
 }

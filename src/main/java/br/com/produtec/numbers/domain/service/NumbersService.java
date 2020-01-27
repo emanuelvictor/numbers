@@ -3,15 +3,13 @@ package br.com.produtec.numbers.domain.service;
 import br.com.produtec.numbers.domain.entity.numbers.Number;
 import br.com.produtec.numbers.domain.repository.INumbersRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * @author Emanuel Victor
  * @version 1.0.0
- * @since 1.0.0, 10/09/2019
+ * @since 1.0.0, 27/01/2020
  */
 @Service
 @RequiredArgsConstructor
@@ -23,12 +21,20 @@ public class NumbersService {
     private final INumbersRepository numbersRepository;
 
     /**
-     * @param filter
-     * @param pageable
+     * @param number
      * @return
      */
-    public Page<Number> listByFilters(final String filter, final Pageable pageable) {
-        return numbersRepository.listByFilters(filter, pageable);
+    @Transactional
+    public Number save(final Number number) {
+        return numbersRepository.save(number);
     }
 
+    /**
+     * @param id
+     * @return
+     */
+    @Transactional(readOnly = true)
+    public Number findById(final long id) {
+        return this.numbersRepository.findById(id).orElseThrow(() -> new RuntimeException("Number not found"));
+    }
 }

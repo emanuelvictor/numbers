@@ -19,10 +19,9 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 
-create table public.number (id  bigserial not null, created timestamp not null, updated timestamp, digit varchar(3) not null, processing_time int8 not null, primary key (id));
-create table public.number_audited (id int8 not null, revision int8 not null, revision_type int2, digit varchar(50), processing_time int8, primary key (id, revision));
+create table public.number (id  bigserial not null, created timestamp not null, updated timestamp, digit int2 not null, processing_time int4 not null, primary key (id));
+create table public.number_audited (id int8 not null, revision int8 not null, revision_type int2, digit int2, processing_time int4, primary key (id, revision));
 create table public.revision (id  bigserial not null, timestamp int8 not null, user_id int8, primary key (id));
 alter table public.number drop constraint if exists UK_number_digit;
-
 alter table public.number add constraint UK_number_digit unique (digit);
 alter table public.number_audited add constraint FK_number_audited_revision foreign key (revision) references public.revision;

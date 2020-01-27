@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <title>Numbers</title>
+</h:head>
+
+<h:body>
+    <h:form id="numbers-form">
+
+        <p:panel header="Numbers">
+            <h:panelGrid columns="2" cellpadding="4">
+                <h:outputText value="Enter number of controls to display: " />
+                <p:inputText id="number" value="#{numbersManagedBean.number.digit}" />
+
+<!--                <p:commandButton update="greeting-panel"-->
+<!--                                 id="submit" value="Submit"-->
+<!--                                 oncomplete="PF('greetingDialog').show()" />-->
+
+                <p:commandButton id='submit' value='Submit'
+                                 actionListener='#{numbersManagedBean.save()}'/>
+<!--                <p:commandButton value="#{programBundle['back_to_list']}"-->
+<!--                                 process="@this"-->
+<!--                                 action="#{programFormBean.changeToList}" />-->
+
+
+            </h:panelGrid>
+        </p:panel>
+
+    </h:form>
+</h:body>
+</html>
