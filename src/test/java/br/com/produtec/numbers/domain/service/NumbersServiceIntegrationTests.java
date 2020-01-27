@@ -37,6 +37,33 @@ public class NumbersServiceIntegrationTests extends AbstractIntegrationTests {
     /**
      *
      */
+    @Test(expected = java.lang.IllegalArgumentException.class)
+    @Sql({"/dataset/truncate-all-tables.sql"})
+    public void insertNumberOutsideTheRangeMustFail() {
+
+        final Number number = new Number();
+        number.setDigit((short) 164);
+
+        numbersService.save(number);
+
+    }
+
+    /**
+     *
+     */
+    @Test(expected = java.lang.IllegalArgumentException.class)
+    @Sql({"/dataset/truncate-all-tables.sql"})
+    public void insertNumberWithDigitNullMustFail() {
+
+        final Number number = new Number();
+
+        numbersService.save(number);
+
+    }
+
+    /**
+     *
+     */
     @Test(expected = org.springframework.dao.DataIntegrityViolationException.class)
     @Sql({"/dataset/truncate-all-tables.sql", "/dataset/numbers.sql"})
     public void insertNumberMustFail() {
@@ -47,7 +74,6 @@ public class NumbersServiceIntegrationTests extends AbstractIntegrationTests {
         numbersService.save(number);
 
     }
-
 
     /**
      *
@@ -116,4 +142,33 @@ public class NumbersServiceIntegrationTests extends AbstractIntegrationTests {
 
     }
 
+    /**
+     *
+     */
+    @Test(expected = java.lang.IllegalArgumentException.class)
+    @Sql({"/dataset/truncate-all-tables.sql", "/dataset/numbers.sql"})
+    public void updateNumberOutsideTheRangeMustFail() {
+
+        final Number number = this.numbersService.findById(1L);
+
+        number.setDigit((short) 213);
+
+        numbersService.save(number);
+
+    }
+
+    /**
+     *
+     */
+    @Test(expected = java.lang.IllegalArgumentException.class)
+    @Sql({"/dataset/truncate-all-tables.sql", "/dataset/numbers.sql"})
+    public void updateNumberWithDigitNullMustFail() {
+
+        final Number number = this.numbersService.findById(1L);
+
+        number.setDigit(null);
+
+        numbersService.save(number);
+
+    }
 }

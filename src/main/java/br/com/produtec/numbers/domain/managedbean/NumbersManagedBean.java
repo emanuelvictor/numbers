@@ -1,7 +1,8 @@
-package br.com.produtec.numbers.domain.service;
+package br.com.produtec.numbers.domain.managedbean;
 
 
 import br.com.produtec.numbers.domain.entity.numbers.Number;
+import br.com.produtec.numbers.domain.service.NumbersService;
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -27,8 +28,7 @@ public class NumbersManagedBean {
     /**
      *
      */
-    public void save() {
-        numbersService.save(number);
-        System.out.println("asdfa");
+    public Number save() {
+        return numbersService.save(number);
     }
 }

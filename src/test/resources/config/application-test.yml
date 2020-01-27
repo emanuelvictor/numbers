@@ -97,12 +97,3 @@ logging.level:
 # configs de logging
 logging:
   file: /var/log/${spring.application.name}/${spring.application.name}.log
-
-# informacoes do sistema
-info:
-  app:
-    name: ${spring.application.name}
-    module: ${spring.application.name}
-    version: @project.version@-@project.build-number@
-    environment: @active.profile@
-    url: ${spring.application.name}.produtec.com.br

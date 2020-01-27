@@ -103,6 +103,6 @@ info:
   app:
     name: ${spring.application.name}
     module: ${spring.application.name}
-    version: @project.version@-@project.build-number@
+    version: 1.0.0
     environment: @active.profile@
     url: ${spring.application.name}.produtec.com.br
