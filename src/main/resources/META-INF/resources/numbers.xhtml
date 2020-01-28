@@ -13,12 +13,11 @@
 
         <p:panel header="#{numbersManagedBean.labelsBundle['numbers']}">
             <h:panelGrid columns="2" cellpadding="4">
-                <h:outputText value="#{numbersManagedBean.labelsBundle['numbers.input']}" />
+                <h:outputText value="#{numbersManagedBean.labelsBundle['numbers.input']}:" />
                 <p:inputText id="number" value="#{numbersManagedBean.number.digit}" />
 
-                <p:commandButton id='submit' value='Submit'
-                                 actionListener='#{numbersManagedBean.save()}'/>
-
+                <p:commandButton actionListener='#{numbersManagedBean.save()}'
+                                 id='submit' value="#{numbersManagedBean.labelsBundle['numbers.calculateAndInsert']}"/>
             </h:panelGrid>
         </p:panel>
 
