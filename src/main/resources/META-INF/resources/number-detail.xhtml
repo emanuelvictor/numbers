@@ -3,23 +3,31 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:p="http://primefaces.org/ui" xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:p="http://primefaces.org/ui" xmlns:f="http://xmlns.jcp.org/jsf/core"
+>
 
 <h:head>
     <title>Numbers</title>
 </h:head>
 
-<f:event type="preRenderView"
-         listener="#{numbersManagedBean.initialize(param.numberId)}"/>
+<f:event type='preRenderView' listener='#{numbersManagedBean.initialize(param.id)}'/>
 <h:body>
 
     <h:form id="view-number">
         <p:panel header="#{numbersManagedBean.labelsBundle['numbers']}">
             <h:panelGrid columns="2" cellpadding="4">
+
                 <h:outputLabel value='#{numbersManagedBean.number.digit}'/>
+
+                <p:row>
+                    <p:repeat value="#{numbersManagedBean.number.numbers}" var='number'>
+                        <h:outputText value='#{number}' style="font-weight: bold"/>&#160;
+                    </p:repeat>
+                </p:row>
 
                 <p:commandButton action='#{numbersManagedBean.changeToInsert}'
                                  value="#{numbersManagedBean.labelsBundle['back']}"/>
+
             </h:panelGrid>
         </p:panel>
     </h:form>

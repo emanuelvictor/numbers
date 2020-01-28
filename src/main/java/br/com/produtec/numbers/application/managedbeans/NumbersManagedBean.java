@@ -40,6 +40,7 @@ public class NumbersManagedBean {
     public void initialize(long id) {
         if (!FacesContext.getCurrentInstance().isPostback()) {
             this.number = this.numbersService.findById(id);
+            this.number.calculateNumbers();
         }
     }
 
@@ -47,8 +48,7 @@ public class NumbersManagedBean {
      *
      */
     public void save() {
-        numbersService.save(number);
-        changeToDetail(number.getId());
+        changeToDetail(numbersService.save(number).getId());
     }
 
     /**
@@ -56,7 +56,7 @@ public class NumbersManagedBean {
      */
     private void changeToDetail(final long id) {
         try {
-            final String url = FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath() + "/number-detail.jsf?numberId=" + id;
+            final String url = FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath() + "/number-detail.jsf?id=" + id;
             FacesContext.getCurrentInstance().getExternalContext().redirect(url);
         } catch (IOException ignored) {
         }

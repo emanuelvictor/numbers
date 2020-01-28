@@ -31,7 +31,8 @@ public class NumbersService {
         Assert.isTrue(number.getDigit() != null, "O dígito não pode ser nulo");
         Assert.isTrue(number.getDigit() <= 100 && number.getDigit() > 0, "Os números devem estar entre 1 e 100");
 
-        return numbersRepository.save(number);
+        return numbersRepository.findByDigit(number.getDigit()).orElseGet(() -> numbersRepository.save(number));
+
     }
 
     /**

@@ -4,6 +4,8 @@ import br.com.produtec.numbers.domain.entity.numbers.Number;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 /**
  * @author Emanuel Victor
  * @version 1.0.0
@@ -11,5 +13,7 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface INumbersRepository extends JpaRepository<Number, Long> {
+
+    Optional<Number> findByDigit(final short digit);
 
 }
