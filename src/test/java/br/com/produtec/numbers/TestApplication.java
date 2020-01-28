@@ -1,4 +1,4 @@
-package br.com.produtec.numbers.domain;
+package br.com.produtec.numbers;
 
 import org.springframework.boot.test.context.TestConfiguration;
 

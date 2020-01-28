@@ -11,21 +11,13 @@
 <h:body>
     <h:form id="numbers-form">
 
-        <p:panel header="Numbers">
+        <p:panel header="#{numbersManagedBean.labelsBundle['numbers']}">
             <h:panelGrid columns="2" cellpadding="4">
-                <h:outputText value="Enter number of controls to display: " />
+                <h:outputText value="#{numbersManagedBean.labelsBundle['numbers.input']}" />
                 <p:inputText id="number" value="#{numbersManagedBean.number.digit}" />
-
-<!--                <p:commandButton update="greeting-panel"-->
-<!--                                 id="submit" value="Submit"-->
-<!--                                 oncomplete="PF('greetingDialog').show()" />-->
 
                 <p:commandButton id='submit' value='Submit'
                                  actionListener='#{numbersManagedBean.save()}'/>
-<!--                <p:commandButton value="#{programBundle['back_to_list']}"-->
-<!--                                 process="@this"-->
-<!--                                 action="#{programFormBean.changeToList}" />-->
-
 
             </h:panelGrid>
         </p:panel>

@@ -1,6 +1,6 @@
-package br.com.produtec.numbers.domain.service;
+package br.com.produtec.numbers;
 
-import br.com.produtec.numbers.domain.TestApplication;
+import br.com.produtec.numbers.TestApplication;
 import br.com.produtec.numbers.Application;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;

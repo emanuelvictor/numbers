@@ -1,5 +1,6 @@
 package br.com.produtec.numbers.domain.service;
 
+import br.com.produtec.numbers.AbstractIntegrationTests;
 import br.com.produtec.numbers.domain.entity.numbers.Number;
 import org.junit.Assert;
 import org.junit.Test;
