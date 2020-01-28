@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 import org.hibernate.envers.Audited;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 import java.util.HashSet;
@@ -28,6 +30,7 @@ public class Number extends AbstractEntity {
      *
      */
     @NotNull
+    @Max(100) @Min(1)
     @Column(nullable = false, unique = true)
     private Short digit;
 
@@ -51,7 +54,7 @@ public class Number extends AbstractEntity {
     public void calculateNumbers() {
         final LocalDateTime init = LocalDateTime.now();
 
-        if (digit == 0)
+        if (digit == null || digit == 0)
             return;
 
         this.numbers = new HashSet<>();

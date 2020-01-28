@@ -65,20 +65,6 @@ public class NumbersServiceIntegrationTests extends AbstractIntegrationTests {
     /**
      *
      */
-    @Test(expected = org.springframework.dao.DataIntegrityViolationException.class)
-    @Sql({"/dataset/truncate-all-tables.sql", "/dataset/numbers.sql"})
-    public void insertNumberMustFail() {
-
-        final Number number = new Number();
-        number.setDigit((short) 23);
-
-        numbersService.save(number);
-
-    }
-
-    /**
-     *
-     */
     @Test
     @Sql({"/dataset/truncate-all-tables.sql", "/dataset/numbers.sql"})
     public void findNumberByIdMustPass() {
@@ -125,21 +111,6 @@ public class NumbersServiceIntegrationTests extends AbstractIntegrationTests {
         Assert.assertNotNull(number.getDigit());
         Assert.assertNotNull(number.getProcessingTime());
         Assert.assertNotEquals(oldDigit, (short) number.getDigit());
-
-    }
-
-    /**
-     *
-     */
-    @Test(expected = org.springframework.dao.DataIntegrityViolationException.class)
-    @Sql({"/dataset/truncate-all-tables.sql", "/dataset/numbers.sql"})
-    public void updateNumberMustFail() {
-
-        final Number number = this.numbersService.findById(1L);
-
-        number.setDigit((short) 23);
-
-        this.numbersService.save(number);
 
     }
 
