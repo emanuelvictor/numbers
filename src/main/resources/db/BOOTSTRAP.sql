@@ -1,19 +1,7 @@
-CREATE EXTENSION IF NOT EXISTS unaccent WITH SCHEMA pg_catalog;
-
---
--- -- TOC entry 2174 (class 0 OID 0)
--- -- Dependencies: 1
--- -- Name: EXTENSION unaccent; Type: COMMENT; Schema: -; Owner:
--- --
---
--- COMMENT ON EXTENSION unaccent IS 'text search dictionary that removes accents';
-
-
-CREATE OR REPLACE FUNCTION filter(needles text, VARIADIC haystacks text [])
-RETURNS boolean AS $$
-SELECT needles IS NULL OR trim(needles) = '' OR EXISTS(
-    SELECT DISTINCT 1
-    FROM unnest(haystacks) haystack,
-    unnest(string_to_array(needles, ',')) needle
-    WHERE unaccent(haystack) ILIKE '%' || unaccent(needle) || '%');
-$$ LANGUAGE SQL;
+create table numbers (id number(19,0) not null, created timestamp not null, updated timestamp, digit number(5,0) not null check (digit<=100 AND digit>=1), processing_time number(10,0) not null, primary key (id));
+create table numbers_audited (id number(19,0) not null, revision number(19,0) not null, revision_type number(3,0), digit number(5,0), processing_time number(10,0), primary key (id, revision));
+create table revision (id number(19,0) not null, timestamp number(19,0) not null, user_id number(19,0), primary key (id));
+alter table numbers drop constraint UK_numbers_digit;
+alter table numbers add constraint UK_numbers_digit unique (digit);
+create sequence hibernate_sequence start with 1 increment by  1;
+alter table numbers_audited add constraint FKjm9qhqq9lxo2hli5lj1g92r6f foreign key (revision) references revision;
