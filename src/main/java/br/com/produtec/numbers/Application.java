@@ -23,16 +23,6 @@ import org.springframework.scheduling.annotation.EnableAsync;
 public class Application extends SpringBootServletInitializer {
 
     /**
-     * Esquema público
-     */
-    public static final String PUBLIC = "public";
-
-    /**
-     * Esquema da tabela de revisão
-     */
-    public static final String REVISION = PUBLIC;
-
-    /**
      * Run the Spring Boot application
      *
      * @param args {String[]} command line arguments

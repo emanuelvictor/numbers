@@ -18,7 +18,6 @@ import java.io.Serializable;
 @Data
 @Entity
 @NoArgsConstructor
-@Table(schema = Application.REVISION)
 @RevisionEntity(EntityTrackingRevisionListener.class)
 class Revision implements Serializable {
 
@@ -32,7 +31,7 @@ class Revision implements Serializable {
      */
     @Id
     @RevisionNumber
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private long id;
 
     /**

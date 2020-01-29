@@ -23,6 +23,7 @@ import java.util.Set;
 @Entity
 @Audited
 @NoArgsConstructor
+@Table(name = "numbers")
 @EqualsAndHashCode(callSuper = true)
 public class Number extends AbstractEntity {
 
