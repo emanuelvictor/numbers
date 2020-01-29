@@ -1,6 +1,6 @@
 # PRODUTEC - NUMBERS
 
-- This application is dedicated to the execution of the challenge to join Produtec Corporation.
+*This application is dedicated to the execution of the challenge to join Produtec Corporation.*
 
 ## Configuring database
 
