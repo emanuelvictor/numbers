@@ -38,7 +38,7 @@ public class NumbersRepositoryIntegrationTests extends AbstractIntegrationTests 
     /**
      *
      */
-    @Test(expected = javax.validation.ConstraintViolationException.class)
+    @Test(expected = org.springframework.transaction.TransactionSystemException.class)
     @Sql({"/dataset/truncate-all-tables.sql"})
     public void insertNumberOutsideTheRangeMustFail() {
 
@@ -52,7 +52,7 @@ public class NumbersRepositoryIntegrationTests extends AbstractIntegrationTests 
     /**
      *
      */
-    @Test(expected = javax.validation.ConstraintViolationException.class)
+    @Test(expected = org.springframework.transaction.TransactionSystemException.class)
     @Sql({"/dataset/truncate-all-tables.sql"})
     public void insertNumberWithDigitNullMustFail() {
 
@@ -79,7 +79,7 @@ public class NumbersRepositoryIntegrationTests extends AbstractIntegrationTests 
     /**
      *
      */
-    @Test(expected = javax.validation.ConstraintViolationException.class)
+    @Test(expected = org.springframework.transaction.TransactionSystemException.class)
     @Sql({"/dataset/truncate-all-tables.sql", "/dataset/numbers.sql"})
     public void insertNegativeNumberMustFail() {
 

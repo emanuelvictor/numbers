@@ -1,1 +1,1 @@
-TRUNCATE public.number CASCADE;
+TRUNCATE TABLE numbers;
